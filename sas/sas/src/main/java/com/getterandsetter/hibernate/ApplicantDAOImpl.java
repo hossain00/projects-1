@@ -1,5 +1,7 @@
 package com.getterandsetter.hibernate;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -65,10 +67,23 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 		tx.commit();
 	}
 	
+	//this finds the application by its ID
 	public Sas_Application findOne(int appid) {
 		Sas_Application application = (Sas_Application) session.load(Sas_Application.class, appid); //generate SELECT
 		return application;
 	}
+	
+	//get all the applications in a list
+
+    @SuppressWarnings("unchecked")
+
+    public List<Sas_Application> findAllApps() {
+
+        //return session.createQuery("from Sas_Application").list();
+
+        return session.createCriteria(Sas_Application.class).list();
+
+    }
 }
 
 
