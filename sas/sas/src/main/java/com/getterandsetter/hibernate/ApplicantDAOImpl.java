@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 
 import com.getterandsetter.hibernate.HibernateUtils;
 
+
+
 public class ApplicantDAOImpl implements ApplicantDAO {
 
 	private SessionFactory sf = HibernateUtils.getSessionFactory();
@@ -36,7 +38,7 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 			tx.rollback();
 		}
 	}
-	
+	//only using this to create or add application
 	public void createSas_Application(Sas_Application app) {
 		Transaction tx = session.beginTransaction();
 		try{
@@ -48,4 +50,25 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 			tx.rollback();
 		}
 	}
+	
+	//use this to update application
+	public void update(Sas_Application app) {
+		Transaction tx = session.beginTransaction();
+		session.saveOrUpdate(app);
+		tx.commit();
+	}
+	
+	//delete application which we won't do
+	public void delete(Sas_Application app) {
+		Transaction tx = session.beginTransaction();
+		session.delete(app);
+		tx.commit();
+	}
+	
+	public Sas_Application findOne(int appid) {
+		Sas_Application application = (Sas_Application) session.load(Sas_Application.class, appid); //generate SELECT
+		return application;
+	}
 }
+
+
