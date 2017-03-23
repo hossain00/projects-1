@@ -143,6 +143,17 @@ public class Sas_Application {
 		Sas_job_type_id = sas_job_type_id;
 	}
 	
+	//constructor with id
+	public Sas_Application(int sas_id, Sas_Application_Status sas_status_id, Sas_Users sas_author,
+			Sas_Application_Type sas_job_type_id) {
+		super();
+		Sas_id = sas_id;
+		Sas_status_id = sas_status_id;
+		Sas_author = sas_author;
+		Sas_job_type_id = sas_job_type_id;
+	}
+	
+	
 	
 	
 	

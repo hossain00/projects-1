@@ -3,6 +3,7 @@ package com.getterandsetter.hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+
 /**
  * Set up my Hibernate
  *
@@ -25,3 +26,4 @@ public class HibernateUtils {
 				.buildSessionFactory();
 	}
 }
+	
