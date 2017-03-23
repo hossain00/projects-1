@@ -13,17 +13,19 @@ public class InsertTest {
 		ApplicantDAO dao = new ApplicantDAOImpl(); // no arg constructor calls
 													// to open a new session
 
-		/*
-		 * dao.createSas_User(new
-		 * Sas_Users(7,"welcome1","Robert","robertr@gmail.com", new
-		 * Sas_User_Roles(22,"HiringManager"),"Red","rred55"));
-		 */
+		
+		 /*dao.createSas_User(new
+		 Sas_Users(7,"welcome1","Robert","robertr@gmail.com", new
+		 Sas_User_Roles(2, "Applicant"),"Red","rred55"));*/
+		 
 		// Sas_User_Roles userrole= new Sas_User_Roles(22,"HiringManager");
 		dao.createSas_Application(new Sas_Application(
 				new Sas_Application_Status(1, "Pending"), 
 				new Sas_Users(7, "welcome1", "Robert", "robertr@gmail.com",
-				new Sas_User_Roles(22, "HiringManager"), "Red", "rred55"),
+				new Sas_User_Roles(2, "Applicant"), "Red", "rred55"),
 				new Sas_Application_Type(1, "Full Stack Developer")));
+		
+		
 
 		System.out.println("Success!");
 	}
