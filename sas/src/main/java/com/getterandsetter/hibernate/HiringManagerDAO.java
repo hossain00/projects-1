@@ -31,6 +31,5 @@ public interface HiringManagerDAO
 	public void approveDeny(Sas_Users user, int statusChange, int appID);
 	
 	
-	
 }
 

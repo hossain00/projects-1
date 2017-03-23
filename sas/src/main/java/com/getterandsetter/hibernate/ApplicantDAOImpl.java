@@ -19,6 +19,8 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 		session = sf.openSession(); // session per request
 	}
 	
+	
+	//Creates new user roles?
 	public void create(Sas_User_Roles user_role) {
 		Transaction tx = session.beginTransaction();
 		try{
@@ -29,6 +31,7 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 		}
 	}
 	
+	//Create User?
 	public void createSas_User(Sas_Users user) {
 		Transaction tx = session.beginTransaction();
 		try{
@@ -40,6 +43,8 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 			tx.rollback();
 		}
 	}
+	
+	
 	//only using this to create or add application
 	public void createSas_Application(Sas_Application app) {
 		Transaction tx = session.beginTransaction();

@@ -36,6 +36,12 @@ public class CreateDatabaseTest {
 		 */
 		dao.createAppType(new Sas_Application_Type(1, "Full Stack Developer"));
 		
+		/**
+		 * create user roles
+		 */
+		dao.createUserRoleType(new Sas_User_Roles(1, "HiringManager"));
+		dao.createUserRoleType(new Sas_User_Roles(2, "Applicant"));
+		
 		System.out.println("Success!");
 	}
 

@@ -42,5 +42,20 @@ public class CreateDAOImpl implements CreateDAO
 			tx.rollback();
 		}
 	}
+	
+	public void createUserRoleType(Sas_User_Roles role) 
+	{
+		Transaction tx = session.beginTransaction();
+		try
+		{
+			session.save(role);
+			tx.commit();
+		}
+		catch(Exception e)
+		{
+			tx.rollback();
+		}
+	}
+
 
 }
