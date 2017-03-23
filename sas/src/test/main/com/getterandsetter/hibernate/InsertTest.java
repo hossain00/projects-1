@@ -19,6 +19,7 @@ public class InsertTest {
 		 Sas_User_Roles(2, "Applicant"),"Red","rred55"));*/
 		 
 		// Sas_User_Roles userrole= new Sas_User_Roles(22,"HiringManager");
+		//Mikes new stuff
 		dao.createSas_Application(new Sas_Application(
 				new Sas_Application_Status(1, "Pending"), 
 				new Sas_Users(7, "welcome1", "Robert", "robertr@gmail.com",
