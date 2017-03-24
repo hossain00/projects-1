@@ -3,6 +3,9 @@ package com.getterandsetter.hibernate;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.getterandsetter.beans.Sas_Application;
+import com.getterandsetter.dao.ApplicantDAOImpl;
+
 public class UpdateApplicationTest {
 
 	private static Sas_Application toTest;

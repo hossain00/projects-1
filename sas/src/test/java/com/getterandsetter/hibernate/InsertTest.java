@@ -2,9 +2,13 @@ package com.getterandsetter.hibernate;
 
 import org.junit.Test;
 
-import com.getterandsetter.hibernate.ApplicantDAO;
-import com.getterandsetter.hibernate.ApplicantDAOImpl;
-import com.getterandsetter.hibernate.Sas_User_Roles;
+import com.getterandsetter.beans.Sas_Application;
+import com.getterandsetter.beans.Sas_Application_Status;
+import com.getterandsetter.beans.Sas_Application_Type;
+import com.getterandsetter.beans.Sas_User_Roles;
+import com.getterandsetter.beans.Sas_Users;
+import com.getterandsetter.dao.ApplicantDAO;
+import com.getterandsetter.dao.ApplicantDAOImpl;
 
 public class InsertTest {
 

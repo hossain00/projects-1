@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.getterandsetter.beans.Sas_Application;
+import com.getterandsetter.dao.ApplicantDAOImpl;
+
 public class findAllAppsTest {
 	@Test
 	public void test(){

@@ -2,6 +2,13 @@ package com.getterandsetter.hibernate;
 
 import org.junit.Test;
 
+import com.getterandsetter.beans.Sas_Application;
+import com.getterandsetter.beans.Sas_Application_Status;
+import com.getterandsetter.beans.Sas_Application_Type;
+import com.getterandsetter.beans.Sas_User_Roles;
+import com.getterandsetter.beans.Sas_Users;
+import com.getterandsetter.dao.ApplicantDAOImpl;
+
 public class AppDeleteTest {
 	@Test
 	public void get(){

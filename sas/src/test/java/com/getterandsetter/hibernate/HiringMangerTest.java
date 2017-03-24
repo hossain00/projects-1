@@ -3,6 +3,10 @@ package com.getterandsetter.hibernate;
 import java.util.List;
 
 import org.junit.Test;
+
+import com.getterandsetter.beans.Sas_User_Roles;
+import com.getterandsetter.beans.Sas_Users;
+import com.getterandsetter.dao.HiringManagerDAOImpl;
 /**
  * 
  * @author Hendy
