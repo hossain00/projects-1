@@ -23,8 +23,8 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 	}
 	
 	
-	//Creates new user roles?
-	public void create(Sas_User_Roles user_role) {
+	//Creates new user roles just for testing do not use
+	public void createSas_User_Roles(Sas_User_Roles user_role) {
 		Transaction tx = session.beginTransaction();
 		try{
 			session.save(user_role); 
@@ -34,7 +34,7 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 		}
 	}
 	
-	//Create User?
+	//Create User just for testing do not use
 	public void createSas_User(Sas_Users user) {
 		Transaction tx = session.beginTransaction();
 		try{
@@ -48,7 +48,7 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 	}
 	
 	
-	//only using this to create or add application
+	//only using this to add application to database
 	public void createSas_Application(Sas_Application app) {
 		Transaction tx = session.beginTransaction();
 		try{
@@ -73,6 +73,7 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 		Transaction tx = session.beginTransaction();
 		session.delete(app);
 		tx.commit();
+		System.out.println("Entry Deleted");
 	}
 	
 	//this finds the application by its ID
