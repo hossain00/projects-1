@@ -3,27 +3,33 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-		</div>
-		</div>
-		<div class="col-md-6">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>App ID</th>
+<div>
+<div class="container">
+<h1>Simple Application System <small>Hiring Manager's View</small></h1>
+		<hr class="reimb-primary">
+
+		<table class="table table-hover table-responsive Reimb-datatable" id="reimbtable">
+			<thead>
+				<tr>
+					    <th>App ID</th>
 						<th>Candidate</th>
 						<th>Skills</th>
 						<th>Resume</th>
 						<th>Applied Position</th>
 						<th>Time Submitted</th>
+						<th>Status<th>
 						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+				</tr>
+			</thead>
+			<tbody>
+
+
 		</div>
-	</div>
+		</div>
+
 
 
 
@@ -32,8 +38,36 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
+function refresh() {
+	$.ajax("http://localhost:7001/sas/hmanager/all", {
+		method : "GET",
+		headers : {
+			"Accept" : "application/json"
+		},
+		success : function(response) {
+			console.log(response);
+			tableload(response);
+		}
+	});
+}
+function tableload(response) {
+	$.each(response, function(index, temp) {
+		$(".table tbody").append("<tr>");
+		$(".table tbody").append("<td>" + temp.sas_id + "</td>");
+		$(".table tbody").append("<td>" + temp.sas_author.user_first_name + temp.sas_author.user_last_name +"</td>");
+		$(".table tbody").append("<td>" + temp.sas_skills  + "</td>");
+		$(".table tbody").append("<td>" + temp.resume + "</td>");
+		$(".table tbody").append("<td>" + "temp." + "</td>");
+		$(".table tbody").append("<td>" + temp.sas_submitted  + "</td>");
+		$(".table tbody").append("<td>" + temp.sas_status_id.sas_status + "</td>");
+		$(".table tbody").append("<td>" + "temp." + "</td>");
+		$(".table tbody").append("</tr>"); 
+	});
+}
  
 
+
+refresh();
 })
 
 

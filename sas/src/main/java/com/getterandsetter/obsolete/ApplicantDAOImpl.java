@@ -1,4 +1,4 @@
-package com.getterandsetter.dao;
+package com.getterandsetter.obsolete;
 
 import java.util.List;
 

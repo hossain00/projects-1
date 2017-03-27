@@ -1,5 +1,6 @@
 package com.getterandsetter.beans;
 
+
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;

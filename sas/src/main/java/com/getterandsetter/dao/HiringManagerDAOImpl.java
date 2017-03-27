@@ -1,5 +1,4 @@
 package com.getterandsetter.dao;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +33,8 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 	 * 
 	 * gets all applicants
 	 */
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<HiringManager> getAllApplicants() 
 	{
@@ -41,6 +42,9 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		
 		return (ArrayList<HiringManager>) query.list();
 	}
+	
+	
+	
 	
 	public void setNeededSkills(HiringManager manager, ArrayList<String>desiredSkills) 
 	{

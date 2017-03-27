@@ -4,7 +4,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.getterandsetter.beans.Sas_Application;
-import com.getterandsetter.dao.ApplicantDAOImpl;
+import com.getterandsetter.obsolete.ApplicantDAOImpl;
 
 public class UpdateApplicationTest {
 

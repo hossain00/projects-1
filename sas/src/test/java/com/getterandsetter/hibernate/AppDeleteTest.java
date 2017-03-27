@@ -7,7 +7,7 @@ import com.getterandsetter.beans.Sas_Application_Status;
 import com.getterandsetter.beans.Sas_Application_Type;
 import com.getterandsetter.beans.Sas_User_Roles;
 import com.getterandsetter.beans.Sas_Users;
-import com.getterandsetter.dao.ApplicantDAOImpl;
+import com.getterandsetter.obsolete.ApplicantDAOImpl;
 
 public class AppDeleteTest {
 	@Test

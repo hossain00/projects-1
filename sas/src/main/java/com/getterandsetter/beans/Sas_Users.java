@@ -24,7 +24,7 @@ public class Sas_Users {
 	// private Set<Employee> members;
 	// foreign key many to one which is in the Sas_User_Roles table(SAS_ROLE_ID)
 	@ManyToOne
-	@JoinColumn(name = "User_role_id", unique = true) // this is just the name
+	@JoinColumn(name = "User_role_id") // this is just the name
 														// of the column we
 														// create
 	private Sas_User_Roles User_role_id;

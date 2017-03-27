@@ -29,11 +29,11 @@
         <!-- only recommended for dev/test -->
         
         <!-- hibernate mapping file -->
-        <mapping class="com.getterandsetter.hibernate.Sas_User_Roles" />
-        <mapping class="com.getterandsetter.hibernate.Sas_Users" />
-        <mapping class="com.getterandsetter.hibernate.Sas_Application_Status" />
-        <mapping class="com.getterandsetter.hibernate.Sas_Application_Type" />
-        <mapping class="com.getterandsetter.hibernate.Sas_Application" />
+        <mapping class="com.getterandsetter.beans.Sas_User_Roles" />
+        <mapping class="com.getterandsetter.beans.Sas_Users" />
+        <mapping class="com.getterandsetter.beans.Sas_Application_Status" />
+        <mapping class="com.getterandsetter.beans.Sas_Application_Type" />
+        <mapping class="com.getterandsetter.beans.Sas_Application" />
         
 <!--         <mapping file="Hero.hbm.xml" /> -->
     </session-factory>

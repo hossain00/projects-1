@@ -2,7 +2,7 @@ package com.getterandsetter.hibernate;
 
 import org.junit.Test;
 
-import com.getterandsetter.dao.ApplicantDAOImpl;
+import com.getterandsetter.obsolete.ApplicantDAOImpl;
 
 public class FindAppTest {
 	@Test
