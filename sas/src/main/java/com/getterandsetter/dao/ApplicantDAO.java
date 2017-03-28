@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.getterandsetter.beans.Sas_Application;
+import com.getterandsetter.beans.Sas_Application_Type;
 import com.getterandsetter.beans.Sas_Users;
 
 public class ApplicantDAO {
@@ -44,6 +45,13 @@ public class ApplicantDAO {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Sas_Application.class).list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<Sas_Application_Type> findAllJobs(){
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Sas_Application.class).list();
+	
 	
 	
 	
