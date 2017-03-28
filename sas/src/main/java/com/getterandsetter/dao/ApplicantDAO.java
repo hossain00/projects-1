@@ -21,8 +21,8 @@ public class ApplicantDAO {
 	@Transactional(rollbackFor=Exception.class,
 			propagation=Propagation.REQUIRES_NEW,
 			isolation=Isolation.READ_COMMITTED)
-	public void createSas_User(Sas_Users app){
-		sessionFactory.getCurrentSession().save(app);
+	public void createSas_User(Sas_Users user){
+		sessionFactory.getCurrentSession().save(user);
 	}
 	//create a application for a Applicant
 	@Transactional(rollbackFor=Exception.class,
@@ -34,12 +34,6 @@ public class ApplicantDAO {
 	
 	@Transactional
 	public Sas_Application findApplication(int appId){
-		return (Sas_Application) sessionFactory.getCurrentSession()
-				.get(Sas_Application.class, appId);
-	}
-	
-	@Transactional
-	public Sas_Application findOne(int appId){
 		return (Sas_Application) sessionFactory.getCurrentSession()
 				.get(Sas_Application.class, appId);
 	}
