@@ -17,7 +17,7 @@ public class InsertTest {
 													// to open a new session
 
 		
-		/* dao.createSas_User(new
+		 /*dao.createSas_User(new
 		 Sas_Users(7,"welcome1","Robert","robertr@gmail.com", new
 		 Sas_User_Roles(2, "Applicant"),"Red","rred55"));*/
 		 

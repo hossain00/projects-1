@@ -333,10 +333,10 @@
                         </div>
                     </div>
                 </div>
-               <form class="cd-form">
+               <form class="cd-form" >
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+						<input class="full-width has-padding has-border" name="signin-email" id="signin-email" type="email" placeholder="E-mail">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
@@ -353,7 +353,7 @@
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width" id="loginbut" type="submit" value="Login">
+						<input class="full-width" id="loginbut" type="button" value="Login">
 					</p>
 				</form>
 				
@@ -383,7 +383,23 @@
 <script src="js/main.js"></script> <!-- Gem jQuery -->
 
 </body>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$('#loginbut').click(function(){
+var sign = $("#signin-email").val();
+	if (sign == 'john@go.com'){
+	console.log("gogog");
+	$('body').load('secure/HireManager.html');
+	}else{
+	console.log("nooo");
+	$('body').load('secure/Applicant.html')}
+
+})
+
+})
+
+
+</script>
 
 
 
