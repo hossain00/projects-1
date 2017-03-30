@@ -2,9 +2,11 @@ package com.getterandsetter.obsolete;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.getterandsetter.beans.Sas_Application;
 import com.getterandsetter.beans.Sas_Application_Type;
@@ -106,4 +108,12 @@ public class ApplicantDAOImpl implements ApplicantDAO {
 		return session.createCriteria(Sas_Application_Type.class).list();
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Sas_Application> getAppsByUserCriteria(Sas_Users user)
+	{
+
+        return (List<Sas_Application>) session.createCriteria(Sas_Application.class).add(Restrictions.eq("Sas_author.Sas_users_id", user.getSas_users_id())).list();
+  
+   }
 }

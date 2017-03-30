@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.getterandsetter.beans.HiringManager;
 import com.getterandsetter.beans.Sas_Application;
@@ -166,5 +168,19 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 			tx.rollback();
 		}
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+    public List<Sas_Application> getAppsByUserCriteria(Sas_Users user){
+
+         Criteria criteria = session.createCriteria(Sas_Application.class);
+         
+         
+         //Integer.toString((user.getSas_users_id(),
+
+         return (List<Sas_Application>) session.createCriteria(Sas_Application.class).add(Restrictions.eq("Sas_author.Sas_users_id", user.getSas_users_id())).list();
+          
+    
+    }
 	
 }
