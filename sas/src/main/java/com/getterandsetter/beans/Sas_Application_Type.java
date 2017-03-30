@@ -3,8 +3,15 @@ package com.getterandsetter.beans;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Hendy
+ *You need to have a skill set for each job
+ */
 @Entity
 @Table(name="Sas_Application_Type")
 public class Sas_Application_Type {
@@ -14,6 +21,23 @@ public class Sas_Application_Type {
 	private int Sas_job_type_id;
 	@Column(name="Sas_job_type")
 	private String Sas_job_type;
+	
+	
+	
+	/**
+	 * Hendy Additions
+	 * 
+	 */
+	@ManyToOne
+	@JoinColumn(name = "Sas_Skill_Set_id")
+	private Sas_SkillSet sas_Skill_Set_id;
+	@Column(name="location")
+	private String location;
+	@Column(name="description")
+	private String description;
+	@Column(name="Industry_Position")
+	private String industryPosition;
+	
 	
 	//getterssetters
 	public int getSas_job_type_id() {
@@ -29,6 +53,14 @@ public class Sas_Application_Type {
 		Sas_job_type = sas_job_type;
 	}
 	
+	/*********************************/
+	public Sas_SkillSet getJobSkillSet() {
+		return sas_Skill_Set_id;
+	}
+	public void setJobSkillSet(Sas_SkillSet jobSkillSet) {
+		this.sas_Skill_Set_id = jobSkillSet;
+	}
+	
 	//constructor
 	public Sas_Application_Type(int sas_job_type_id, String sas_job_type) {
 		super();
@@ -36,11 +68,19 @@ public class Sas_Application_Type {
 		Sas_job_type = sas_job_type;
 	}
 	
+	public Sas_Application_Type(int sas_job_type_id, String sas_job_type, Sas_SkillSet jobSkillSet) {
+		super();
+		Sas_job_type_id = sas_job_type_id;
+		Sas_job_type = sas_job_type;
+		this.sas_Skill_Set_id = jobSkillSet;
+	}
+
+	
 	//no arg constructor
 	public Sas_Application_Type() {
 		super();
 	}
-	
+		
 	
 	
 	

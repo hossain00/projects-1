@@ -1,7 +1,8 @@
 package com.getterandsetter.beans;
+/**
+ * Change resolved and submitted to string types
+ */
 
-
-import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,10 +24,10 @@ public class Sas_Application {
 	private int Sas_id;
 
 	@Column(name = "Sas_submitted")
-	private Timestamp Sas_submitted;
+	private String Sas_submitted;
 
 	@Column(name = "Sas_resolved")
-	private Timestamp Sas_resolved;
+	private String Sas_resolved;
 
 	@Column(name = "Sas_skills")
 	private String Sas_skills;
@@ -57,16 +58,16 @@ public class Sas_Application {
 	public void setSas_id(int sas_id) {
 		Sas_id = sas_id;
 	}
-	public Timestamp getSas_submitted() {
+	public String getSas_submitted() {
 		return Sas_submitted;
 	}
-	public void setSas_submitted(Timestamp sas_submitted) {
+	public void setSas_submitted(String sas_submitted) {
 		Sas_submitted = sas_submitted;
 	}
-	public Timestamp getSas_resolved() {
+	public String getSas_resolved() {
 		return Sas_resolved;
 	}
-	public void setSas_resolved(Timestamp sas_resolved) {
+	public void setSas_resolved(String sas_resolved) {
 		Sas_resolved = sas_resolved;
 	}
 	public String getSas_skills() {
@@ -120,7 +121,7 @@ public class Sas_Application {
 	}
 	
 	//constructor without resume
-	public Sas_Application(int sas_id, Timestamp sas_submitted, Timestamp sas_resolved, String sas_skills,
+	public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, String sas_skills,
 			Sas_Users sas_approver, Sas_Application_Status sas_status_id, Sas_Users sas_author,
 			Sas_Application_Type sas_job_type_id) {
 		super();

@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 
 import com.getterandsetter.beans.Sas_Application_Status;
 import com.getterandsetter.beans.Sas_Application_Type;
+import com.getterandsetter.beans.Sas_SkillSet;
+import com.getterandsetter.beans.Sas_Skills;
 import com.getterandsetter.beans.Sas_User_Roles;
 import com.getterandsetter.hibernate.HibernateUtils;
 
@@ -30,6 +32,7 @@ public class CreateDAOImpl implements CreateDAO
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			tx.rollback();
 		}
 	}
@@ -39,7 +42,7 @@ public class CreateDAOImpl implements CreateDAO
 		Transaction tx = session.beginTransaction();
 		try
 		{
-			session.save(type);
+			session.saveOrUpdate(type);
 			tx.commit();
 		}
 		catch(Exception e)
@@ -54,6 +57,38 @@ public class CreateDAOImpl implements CreateDAO
 		try
 		{
 			session.save(role);
+			tx.commit();
+		}
+		catch(Exception e)
+		{
+			tx.rollback();
+		}
+	}
+
+
+	@Override
+	public void createSkill(Sas_Skills skills) 
+	{
+		Transaction tx = session.beginTransaction();
+		try
+		{
+			session.save(skills);
+			tx.commit();
+		}
+		catch(Exception e)
+		{
+			tx.rollback();
+		}
+	}
+
+
+	@Override
+	public void createSkillSet(Sas_SkillSet skillset) 
+	{
+		Transaction tx = session.beginTransaction();
+		try
+		{
+			session.save(skillset);
 			tx.commit();
 		}
 		catch(Exception e)

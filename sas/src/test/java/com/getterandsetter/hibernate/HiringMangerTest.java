@@ -36,4 +36,3 @@ public class HiringMangerTest
 		System.out.println("success!!");
 	}
 }
-
