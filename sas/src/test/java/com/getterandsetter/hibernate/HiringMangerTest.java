@@ -35,15 +35,16 @@ public class HiringMangerTest
 				"hvalcin"));//username
 */		
 		/*List list = dao.getAllApplicants();
-		System.out.println(list);*/
+		System.out.println(list);*/	
+		Sas_Users manger = dao.findManager(7);
 		
-		Sas_SkillSet desiredSkills = new Sas_SkillSet(12, null, true, true, false, false, false);
-		Sas_Application_Type job = new Sas_Application_Type(3, "test for new Job");
-		List<Sas_Application> list = dao.getRecommendedApps();
+		/*Sas_SkillSet desiredSkills = new Sas_SkillSet(12, null, true, true, false, false, false);
+		Sas_Application_Type job = new Sas_Application_Type(3, "test for new Job");*/
+		List<Sas_Application> list = dao.getAppsByUserCriteria(manger);
 		System.out.println(list);
 		
-		Sas_Users manger = dao.findManager(1);
-		dao.postJob(manger, desiredSkills, job);
+		/*Sas_Users manger = dao.findManager(7);
+		dao.postJob(manger, desiredSkills, job)*/;
 		/*Sas_Application app = dao.findApp(9450);
 		dao.approveDeny(manger, 2, app);*/
 		System.out.println("success!!");

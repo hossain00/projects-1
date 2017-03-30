@@ -163,6 +163,7 @@ public class Sas_Application {
 		Sas_status_id = sas_status_id;
 		Sas_author = sas_author;
 		Sas_job_type_id = sas_job_type_id;
+		
 	}
 	
 }
