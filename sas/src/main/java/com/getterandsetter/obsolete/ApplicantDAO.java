@@ -10,5 +10,5 @@ public interface ApplicantDAO {
 
 	public void createSas_User(Sas_Users sas_Users);
 
-	public void createSas_Application(Sas_Application app);
+	public Sas_Application createSas_Application(Sas_Application app);
 }

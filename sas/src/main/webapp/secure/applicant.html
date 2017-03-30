@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+	</div>
+	</div>
+	<div class="col-md-6">
+<!-- 		<h2>RECOMMENDED</h2> -->
+<!-- 		<table class="table table-striped"> -->
+<!-- 			<thead> -->
+<!-- 				<tr> -->
+<!-- 					<th>Job Title</th> -->
+<!-- 					<th>Description</th> -->
+<!-- 					<th>Desired Skills</th> -->
+<!-- 					<th>Industry</th> -->
+<!-- 					<th>Location</th> -->
+<!-- 					<th>Job ID</th> -->
+<!-- 					<th>Action</th> -->
+<!-- 				</tr> -->
+<!-- 			</thead> -->
+<!-- 			<tbody> -->
+		
+<!-- 			</tbody> -->
+<!-- 		</table> -->
+
+		<h2>ALL JOBS</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Job Title</th>
+					<th>Description</th>
+					<th>Desired Skills</th>
+					<th>Industry</th>
+					<th>Location</th>
+					<th>Job ID</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+	</div>
+
+
+
+
+</body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+refresh();
+
+
+function Application(sas_id, sas_submitted,sas_resolved,sas_skills,
+			sas_approver,  sas_status_id,  sas_author,
+			 sas_job_type_id) {
+			this.sas_id = sas_id;
+			this.sas_submitted = sas_submitted;
+			this.sas_resolved = sas_resolved;
+			this.sas_skills = sas_skills;
+			this.sas_approver = sas_approver;
+			this.sas_status_id=sas_status_id;
+			this.sas_author=sas_author;
+			this.sas_job_type_id=sas_job_type_id;
+			
+		}
+
+
+
+
+// add a new application on button click
+		$("#add").click(function() {
+			$("#add").prop("disabled", true);
+			var sas_id = $("#sas_id").val();
+			var sas_submitted = $("#sas_submitted").val();
+			var sas_resolved = $("#sas_resolved").val();
+			var sas_skills = $("#sas_skills").val();
+			var sas_approver = $("#sas_approver").val();
+			var sas_status_id = $("#sas_status_id").val();
+			var sas_author = $("#sas_author").val();
+			var sas_job_type_id = $("#sas_author").val();
+			var sas_job_type_id = $("#sas_job_type_id").val();
+				
+				
+			var app = new Application(sas_id, sas_submitted,sas_resolved,sas_skills,
+			sas_approver,  sas_status_id,  sas_author,
+			 sas_job_type_id);
+			 
+			$.ajax("http://localhost:7001/sas/applicant/new", {			
+				method : "POST",
+				data : JSON.stringify(app),
+				headers : {
+					"Content-Type" : "application/json"
+				},
+				success : function(response) {
+					$(".alert-success").text(response);
+					console.log(response);
+					$(".alert-success").fadeIn();
+					window.setTimeout(function(response) {
+						$(".alert-success").fadeOut();
+						$("#add").prop("disabled", false);
+					}, 3000);
+					$("form")[0].reset(); //reset form fields
+					refresh();
+				},
+				error: function() {
+					$(".alert-danger").fadeIn();
+					window.setTimeout(function(response) {
+						$(".alert-danger").fadeOut();
+											console.log(response);
+						
+						$("#add").prop("disabled", false);
+					}, 3000);
+				}
+				
+			});
+			return false; // prevent REFRESH
+							console.log($("#sas_id").val());
+			
+		});
+		
+		
+		function refresh() {
+	$.ajax("http://localhost:7001/sas/applicant/all", {
+		method : "GET",
+		headers : {
+			"Accept" : "application/json"
+		},
+		success : function(response) {
+			console.log(response);
+			tableload(response);
+		}
+	});
+	
+	
+}
+function tableload(response) {
+	$.each(response, function(index, temp) {
+		$(".table tbody").append("<tr>");
+		$(".table tbody").append("<td>" + temp.sas_job_type + "</td>");
+		$(".table tbody").append("<td>" + temp.sas_skills  + "</td>");
+		$(".table tbody").append("<td>" + "temp." + "</td>");
+		$(".table tbody").append("<td>" + temp.sas_job_type.sas_job_type_id  + "</td>");
+		$(".table tbody").append("<td>" + "<button id=" + "add" +">" + "Add</button>" + "</td>")	;
+		$(".table tbody").append("</tr>"); 
+	});
+}
+
+
+
+
+});
+
+
+
+</script>
+</html>
