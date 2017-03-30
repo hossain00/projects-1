@@ -60,6 +60,8 @@ public class Sas_Application_Type {
 	public void setJobSkillSet(Sas_SkillSet jobSkillSet) {
 		this.sas_Skill_Set_id = jobSkillSet;
 	}
+	//**************//
+	
 	
 	//constructor
 	public Sas_Application_Type(int sas_job_type_id, String sas_job_type) {
@@ -68,6 +70,24 @@ public class Sas_Application_Type {
 		Sas_job_type = sas_job_type;
 	}
 	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getIndustryPosition() {
+		return industryPosition;
+	}
+	public void setIndustryPosition(String industryPosition) {
+		this.industryPosition = industryPosition;
+	}
 	public Sas_Application_Type(int sas_job_type_id, String sas_job_type, Sas_SkillSet jobSkillSet) {
 		super();
 		Sas_job_type_id = sas_job_type_id;
@@ -75,6 +95,16 @@ public class Sas_Application_Type {
 		this.sas_Skill_Set_id = jobSkillSet;
 	}
 
+	
+	public Sas_Application_Type(int sas_job_type_id, String sas_job_type, String descrip, String industry, Sas_SkillSet jobSkillSet) {
+		super();
+		Sas_job_type_id = sas_job_type_id;
+		Sas_job_type = sas_job_type;
+		description = descrip;
+		industryPosition=industry;
+		this.sas_Skill_Set_id = jobSkillSet;
+	}
+	
 	
 	//no arg constructor
 	public Sas_Application_Type() {

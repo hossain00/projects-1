@@ -34,9 +34,8 @@
 				<tr>
 					<th>Job Title</th>
 					<th>Description</th>
-					<th>Desired Skills</th>
-					<th>Industry</th>
 					<th>Location</th>
+					<th>Industry</th>
 					<th>Job ID</th>
 					<th>Action</th>
 				</tr>
@@ -145,9 +144,11 @@ function tableload(response) {
 	$.each(response, function(index, temp) {
 		$(".table tbody").append("<tr>");
 		$(".table tbody").append("<td>" + temp.sas_job_type + "</td>");
-		$(".table tbody").append("<td>" + temp.sas_skills  + "</td>");
-		$(".table tbody").append("<td>" + "temp." + "</td>");
-		$(".table tbody").append("<td>" + temp.sas_job_type.sas_job_type_id  + "</td>");
+		$(".table tbody").append("<td>" + temp.description  + "</td>");
+		$(".table tbody").append("<td>" + temp.location + "</td>");
+		$(".table tbody").append("<td>" + temp.industryPosition  + "</td>");
+		$(".table tbody").append("<td>" + temp.sas_job_type_id  + "</td>");
+		
 		$(".table tbody").append("<td>" + "<button id=" + "add" +">" + "Add</button>" + "</td>")	;
 		$(".table tbody").append("</tr>"); 
 	});
