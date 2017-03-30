@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.getterandsetter.beans.Sas_Application;
+import com.getterandsetter.dao.HiringManagerDAOImpl;
 import com.getterandsetter.obsolete.ApplicantDAOImpl;
 
 @Controller
@@ -29,12 +30,18 @@ public class HiringManagerController {
 		return "applicant.html";
 
 	}
+	
+	@RequestMapping(value = "recom", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Sas_Application>> Reommended(){
+		app = new HiringManagerDAOImpl().getRecommendedApps();
+		return new ResponseEntity<List<Sas_Application>>(app, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "go", method = RequestMethod.POST)
 	public String whatever(HttpServletRequest req, HttpServletResponse resp) {
 		// System.out.println("Client msg: " + req.getParameter("hello"));
 		return "redirect:applicant";
-
 	}
 
 	@RequestMapping(value = "all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

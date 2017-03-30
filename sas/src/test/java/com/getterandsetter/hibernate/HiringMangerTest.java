@@ -44,8 +44,11 @@ public class HiringMangerTest
 		
 		Sas_Users manger = dao.findManager(1);
 		dao.postJob(manger, desiredSkills, job);
-		/*Sas_Application app = dao.findApp(9450);
-		dao.approveDeny(manger, 2, app);*/
+		Sas_Application app = dao.findApp(9102);
+		dao.approveDeny(manger,app);
+		
+		
+		
 		System.out.println("success!!");
 	}
 }

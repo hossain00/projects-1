@@ -13,6 +13,8 @@
 				Simple Application System <small>Hiring Manager's View</small>
 			</h1>
 			<hr class="app-primary">
+<button type="button" id="recommend" class="btn btn-warning">Recommendation</button>
+<button type="button" id="createjob" class="btn btn-warning" data-toggle="modal" data-target=".bd-example-modal-lg">Post Job</button>
 
 			<table class="table table-hover table-responsive app-datatable"
 				id="apptable">
@@ -28,7 +30,7 @@
 						<th>Action</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tclear">
 				</tbody>
 
 
@@ -37,8 +39,57 @@
 	</div>
 
 
+<!-- Modal For submission -->
+<div class="modal fade bd-example-modal-lg" id="" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Job Posting Criteria</h4>
+            </div>
+            <!--Body-->
+            <form>
+            <div class="modal-body">
+                
+                <div class="md-form">
+                    <label for="form2">Job Type</label>
+                    <input type="text" id="JobType" class="form-control">
+                </div>
+                
+                 <div class="md-form">
+                    <label for="form2">Description</label>
+                    <input type="text" id="Descript" class="form-control">
+                </div>
+                
+                 <div class="md-form">
+                    <label for="form2">Industry Position</label>
+                    <input type="text" id="Indust" class="form-control">
+                </div>
+                
+                 <div class="md-form">
+                    <label for="form2">Location</label>
+                    <input type="text" id="Locate" class="form-control">
+                </div>
+                
+            </div>
+          
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button"  class="btn btn-primary">Submit Posting</button>
+            </div>
+            </form>
+        </div>
+        
+        <!--/.Content-->
+    </div>
+</div>
 
-
+ 
 
 
 	<!-- jQery -->
@@ -48,7 +99,22 @@
 
 	<script type="text/javascript">
 		$(document).ready(
-				function() {			
+				function() {	
+					
+				
+					$('#recommend').click(function(){
+						$.ajax("http://localhost:7001/sas/hmanager/recom", {
+							method : "GET",
+							headers : {
+								"Accept" : "application/json"
+							},
+							success : function(response) {
+								$('#tclear').empty();
+								console.log("cleared")
+								tableload(response);
+							}
+						});
+					});
 
 					function refresh() {
 						$.ajax("http://localhost:7001/sas/hmanager/all", {
@@ -63,6 +129,7 @@
 							}
 						});
 					}
+					
 					function tableload(response) {
 						$.each(response, function(index, temp) {
 							$(".table tbody").append("<tr>");
@@ -94,4 +161,6 @@
 				})
 	</script>
 </body>
+
+
 </html>
