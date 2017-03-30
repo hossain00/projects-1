@@ -81,6 +81,12 @@ public class Sas_SkillSet
 	public void setHibernate(boolean hibernate) {
 		this.hibernate = hibernate;
 	}
+	
+	
+	public Sas_SkillSet() {
+		super();
+		
+	}
 	public Sas_SkillSet(int skillSet_ID, Sas_Users user, boolean java, boolean sql, boolean python, boolean spring,
 			boolean hibernate) {
 		super();
