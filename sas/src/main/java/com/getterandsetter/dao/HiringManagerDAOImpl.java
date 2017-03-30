@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import com.getterandsetter.beans.HiringManager;
 import com.getterandsetter.beans.Sas_Application;
 import com.getterandsetter.beans.Sas_Application_Status;
+import com.getterandsetter.beans.Sas_Application_Type;
 import com.getterandsetter.beans.Sas_SkillSet;
 import com.getterandsetter.beans.Sas_Users;
 import com.getterandsetter.hibernate.HibernateUtils;
@@ -149,4 +150,21 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 			tx.rollback();
 		}
 	}
+	
+	public void postJob(Sas_Users manager, Sas_SkillSet desiredSkills, Sas_Application_Type job)
+	{
+		Transaction tx = session.beginTransaction();
+		try
+		{
+			desiredSkills.setUser(manager);
+			job.setJobSkillSet(desiredSkills);
+			session.save(job);
+			tx.commit();
+		}
+		catch(Exception e)
+		{
+			tx.rollback();
+		}
+	}
+	
 }
