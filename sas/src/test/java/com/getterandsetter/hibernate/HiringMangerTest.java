@@ -35,7 +35,7 @@ public class HiringMangerTest
 		/*List list = dao.getAllApplicants();
 		System.out.println(list);*/
 		
-		List<Sas_Application> list = dao.allApps();
+		List<Sas_Application> list = dao.getRecommendedApps();
 		System.out.println(list);
 		
 		Sas_Users manger = dao.findManager(1);

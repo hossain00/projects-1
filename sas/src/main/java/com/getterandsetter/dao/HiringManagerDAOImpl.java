@@ -90,7 +90,7 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		}
 	}
 
-	public void getRecommendedApps() 
+	public List<Sas_Application> getRecommendedApps() 
 	{
 		/*
 		 * Should match applicant skills(should be a list within applicant object)
@@ -98,6 +98,8 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		 * 
 		 * couldnt be implented because i need to find out off Mike createat a list of skills for applicants
 		 */
+		
+		return session.createCriteria(Sas_Application.class).list();
 	}
 
 	public void approveDeny(Sas_Users mgr, int statusChange, Sas_Application application) 

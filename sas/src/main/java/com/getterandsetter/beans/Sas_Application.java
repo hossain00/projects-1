@@ -110,7 +110,7 @@ public class Sas_Application {
 	//toString
 	@Override
 	public String toString() {
-		return "Sas_Application [Sas_id=" + Sas_id + ", Sas_submitted=" + Sas_submitted + ", Sas_resolved="
+		return "\nSas_Application [Sas_id=" + Sas_id + ", Sas_submitted=" + Sas_submitted + ", Sas_resolved="
 				+ Sas_resolved + ", Sas_skills=" + Sas_skills + ", Sas_approver=" + Sas_approver + ", Sas_status_id="
 				+ Sas_status_id + ", Sas_author=" + Sas_author + ", Sas_job_type_id=" + Sas_job_type_id + "]";
 	}

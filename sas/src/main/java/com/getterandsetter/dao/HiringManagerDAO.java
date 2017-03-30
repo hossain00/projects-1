@@ -30,7 +30,7 @@ public interface HiringManagerDAO
 	 * 1) Get by tallying up all the skills that applicant has that the Hiring manager is looking for
 	 * 2) sort by applicants with the most skills that meat the criteria
 	 */
-	public void getRecommendedApps();
+	public List<Sas_Application> getRecommendedApps();
 	
 	public void approveDeny(Sas_Users mgr, int statusChange, Sas_Application application);
 	public Sas_Application findApp(int Sas_status_id);
