@@ -105,7 +105,7 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		return session.createCriteria(Sas_Application.class).list();
 	}
 
-	public void approveDeny(Sas_Users mgr,  Sas_Application application) 
+	public Sas_Application approveDeny(Sas_Users mgr,  Sas_Application application) 
 	{
 		
 		Transaction tx = session.beginTransaction();
@@ -118,6 +118,7 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 			session.saveOrUpdate(application);
 			tx.commit();
 		/*}*/
+			return application;
 		
 		/*else if(statusChange == 3)
 		{

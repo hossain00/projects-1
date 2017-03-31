@@ -5,23 +5,28 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.getterandsetter.beans.Sas_Application;
+import com.getterandsetter.beans.Sas_Application_Status;
+import com.getterandsetter.beans.Sas_Users;
 import com.getterandsetter.dao.HiringManagerDAOImpl;
 import com.getterandsetter.obsolete.ApplicantDAOImpl;
 
 @Controller
 @RequestMapping(value = "hmanager")
 public class HiringManagerController {
-
+	private HiringManagerDAOImpl d = new HiringManagerDAOImpl();
+	private Sas_Application a = new Sas_Application();
 	private List<Sas_Application> app = new ArrayList<>();
 	// jobs = new ApplicantDAOImpl().findAllJobs();
 
@@ -38,18 +43,33 @@ public class HiringManagerController {
 		return new ResponseEntity<List<Sas_Application>>(app, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "go", method = RequestMethod.POST)
-	public String whatever(HttpServletRequest req, HttpServletResponse resp) {
+	@RequestMapping(value = "appdate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<String> add(@Valid @RequestBody Sas_Application app) {
 		// System.out.println("Client msg: " + req.getParameter("hello"));
-		return "redirect:applicant";
+		//d.findManager(1);
+		
+		Sas_Application_Status stat = new Sas_Application_Status();
+		stat.setSas_status_id(2);
+		app.setSas_status_id(stat);
+		a =  d.approveDeny(d.findManager(1),app);
+		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
 
+	
+	
 	@RequestMapping(value = "all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<Sas_Application>> findAll() {
-		app = new ApplicantDAOImpl().findAllApps();
+		app = new ApplicantDAOImpl().findAllApps();	
 
 		return new ResponseEntity<List<Sas_Application>>(app, HttpStatus.OK);
 
 	}
+	
+	
+	
+	
+	
+	
 }

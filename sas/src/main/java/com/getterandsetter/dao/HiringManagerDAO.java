@@ -32,7 +32,7 @@ public interface HiringManagerDAO
 	 */
 	public List<Sas_Application> getRecommendedApps();
 	
-	public void approveDeny(Sas_Users mgr,  Sas_Application application); 
+	public Sas_Application approveDeny(Sas_Users mgr,  Sas_Application application); 
 	public Sas_Application findApp(int Sas_status_id);
 	public void update(Sas_Application app);
 	

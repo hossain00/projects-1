@@ -100,6 +100,21 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {	
+					appdate
+					
+					$('#recommend').click(function(){
+						$.ajax("http://localhost:7001/sas/hmanager/recom", {
+							method : "GET",
+							headers : {
+								"Accept" : "application/json"
+							},
+							success : function(response) {
+								$('#tclear').empty();
+								console.log("cleared")
+								tableload(response);
+							}
+						});
+					});
 					
 				
 					$('#recommend').click(function(){
