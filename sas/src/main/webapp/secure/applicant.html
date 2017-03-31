@@ -7,27 +7,7 @@
 
 </head>
 <body>
-	</div>
-	</div>
 	<div class="col-md-6">
-<!-- 		<h2>RECOMMENDED</h2> -->
-<!-- 		<table class="table table-striped"> -->
-<!-- 			<thead> -->
-<!-- 				<tr> -->
-<!-- 					<th>Job Title</th> -->
-<!-- 					<th>Description</th> -->
-<!-- 					<th>Desired Skills</th> -->
-<!-- 					<th>Industry</th> -->
-<!-- 					<th>Location</th> -->
-<!-- 					<th>Job ID</th> -->
-<!-- 					<th>Action</th> -->
-<!-- 				</tr> -->
-<!-- 			</thead> -->
-<!-- 			<tbody> -->
-		
-<!-- 			</tbody> -->
-<!-- 		</table> -->
-
 		<h2>ALL JOBS</h2>
 		<table class="table table-striped">
 			<thead>
@@ -45,7 +25,7 @@
 			</tbody>
 		</table>
 	</div>
-	</div>
+	
 
 
 
@@ -57,26 +37,19 @@ $(document).ready(function(){
 refresh();
 
 
-function Application(sas_id, sas_submitted,sas_resolved,sas_skills,
-			sas_approver,  sas_status_id,  sas_author,
-			 sas_job_type_id) {
-			this.sas_id = sas_id;
-			this.sas_submitted = sas_submitted;
-			this.sas_resolved = sas_resolved;
-			this.sas_skills = sas_skills;
-			this.sas_approver = sas_approver;
-			this.sas_status_id=sas_status_id;
-			this.sas_author=sas_author;
-			this.sas_job_type_id=sas_job_type_id;
-			
+function Application(sas_job_type_id) {
+			var obj1 = {
+				
+				temp_sas_job_id:sas_job_type_id
+			}
+			return obj1;
 		}
 
-
-
-
 // add a new application on button click
-		$("#add").click(function() {
-			$("#add").prop("disabled", true);
+		function addApp(){
+		$("[id^='apply_']").click(function(){
+		var p = $(this)[0].parentNode.parentNode;
+			$("#apply_").prop("disabled", true);
 			var sas_id = $("#sas_id").val();
 			var sas_submitted = $("#sas_submitted").val();
 			var sas_resolved = $("#sas_resolved").val();
@@ -85,13 +58,11 @@ function Application(sas_id, sas_submitted,sas_resolved,sas_skills,
 			var sas_status_id = $("#sas_status_id").val();
 			var sas_author = $("#sas_author").val();
 			var sas_job_type_id = $("#sas_author").val();
-			var sas_job_type_id = $("#sas_job_type_id").val();
+			var temp_sas_job_id =$(p)[0].childNodes[4].innerHTML;
 				
 				
-			var app = new Application(sas_id, sas_submitted,sas_resolved,sas_skills,
-			sas_approver,  sas_status_id,  sas_author,
-			 sas_job_type_id);
-			 
+			var app = new Application(temp_sas_job_id);
+			 console.log(app);
 			$.ajax("http://localhost:7001/sas/applicant/new", {			
 				method : "POST",
 				data : JSON.stringify(app),
@@ -124,7 +95,7 @@ function Application(sas_id, sas_submitted,sas_resolved,sas_skills,
 							console.log($("#sas_id").val());
 			
 		});
-		
+		}
 		
 		function refresh() {
 	$.ajax("http://localhost:7001/sas/applicant/all", {
@@ -140,19 +111,38 @@ function Application(sas_id, sas_submitted,sas_resolved,sas_skills,
 	
 	
 }
-function tableload(response) {
+/* function tableload(response) {
 	$.each(response, function(index, temp) {
 		$(".table tbody").append("<tr>");
-		$(".table tbody").append("<td>" + temp.sas_job_type + "</td>");
+		$(".table td").append("<td>" + temp.sas_job_type + "</td>");
 		$(".table tbody").append("<td>" + temp.description  + "</td>");
 		$(".table tbody").append("<td>" + temp.location + "</td>");
 		$(".table tbody").append("<td>" + temp.industryPosition  + "</td>");
-		$(".table tbody").append("<td>" + temp.sas_job_type_id  + "</td>");
-		
-		$(".table tbody").append("<td>" + "<button id=" + "add" +">" + "Add</button>" + "</td>")	;
+		$(".table tbody").append("<td id='co'>" + temp.sas_job_type_id  + "</td>");
+		$(".table tbody").append("<td>" + "<button id=" + "apply_"+ temp.sas_job_type_id +">" + "Add</button>" + "</td>")	;
 		$(".table tbody").append("</tr>"); 
-	});
-}
+		
+	}); */
+	
+	function tableload(response){
+	$.each(response, function(index, temp) {
+		$(".table tbody").append("<tr>" +
+								"<td>"+ temp.sas_job_type + "</td>"+
+								"<td>"+  temp.description +" </td>"+
+								"<td>" + temp.location  +"</td>"+
+								"<td>" + temp.industryPosition+"  </td>"+
+								"<td class='sas_id'>"+  temp.sas_job_type_id  +"</td>"+
+								"<td>  <button id= apply_"+temp.sas_job_type_id + ">Add</button> + </td>"+
+								"</tr>");
+	addApp();
+	})};
+	
+	
+	
+
+
+	console.log('yooo button');
+  // do stuff with airline and flightNumber <input>s
 
 
 

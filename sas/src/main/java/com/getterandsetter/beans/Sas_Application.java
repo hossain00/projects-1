@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Sas_Application")
@@ -50,7 +51,15 @@ public class Sas_Application {
 	@JoinColumn(name = "Sas_job_type_id")
 	private Sas_Application_Type Sas_job_type_id;
 	
+	@Transient
+	private int temp_sas_job_id;
 	
+	public int getTemp_sas_job_id() {
+		return temp_sas_job_id;
+	}
+	public void setTemp_sas_job_id(int temp_sas_job_id) {
+		this.temp_sas_job_id = temp_sas_job_id;
+	}
 	//getters and setters
 	public int getSas_id() {
 		return Sas_id;
@@ -123,7 +132,7 @@ public class Sas_Application {
 	//constructor without resume
 	public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, String sas_skills,
 			Sas_Users sas_approver, Sas_Application_Status sas_status_id, Sas_Users sas_author,
-			Sas_Application_Type sas_job_type_id) {
+			Sas_Application_Type sas_job_type_id,  int temp_sas_job_id) {
 		super();
 		Sas_id = sas_id;
 		Sas_submitted = sas_submitted;
@@ -133,6 +142,7 @@ public class Sas_Application {
 		Sas_status_id = sas_status_id;
 		Sas_author = sas_author;
 		Sas_job_type_id = sas_job_type_id;
+		temp_sas_job_id =temp_sas_job_id;
 	}
 	
 	//constructor with not null args, no App Id is generated
@@ -153,17 +163,7 @@ public class Sas_Application {
 		Sas_status_id = sas_status_id;
 		Sas_author = sas_author;
 		Sas_job_type_id = sas_job_type_id;
+		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	
 }
