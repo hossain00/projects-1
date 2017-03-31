@@ -35,8 +35,14 @@ public class Sas_Application_Type {
 	private String location;
 	@Column(name="description")
 	private String description;
-	@Column(name="Industry_Position")
+	@Column(name="Industry_Position" , nullable = true)
 	private String industryPosition;
+	public Sas_SkillSet getSas_Skill_Set_id() {
+		return sas_Skill_Set_id;
+	}
+	public void setSas_Skill_Set_id(Sas_SkillSet sas_Skill_Set_id) {
+		this.sas_Skill_Set_id = sas_Skill_Set_id;
+	}
 	
 	
 	//getterssetters
@@ -96,16 +102,20 @@ public class Sas_Application_Type {
 	}
 
 	
-	public Sas_Application_Type(int sas_job_type_id, String sas_job_type, String descrip, String industry, Sas_SkillSet jobSkillSet) {
+	
+	
+	
+	
+	public Sas_Application_Type(int sas_job_type_id, String sas_job_type, Sas_SkillSet sas_Skill_Set_id,
+			String location, String description, String industryPosition) {
 		super();
 		Sas_job_type_id = sas_job_type_id;
 		Sas_job_type = sas_job_type;
-		description = descrip;
-		industryPosition=industry;
-		this.sas_Skill_Set_id = jobSkillSet;
+		this.sas_Skill_Set_id = sas_Skill_Set_id;
+		this.location = location;
+		this.description = description;
+		this.industryPosition = industryPosition;
 	}
-	
-	
 	//no arg constructor
 	public Sas_Application_Type() {
 		super();

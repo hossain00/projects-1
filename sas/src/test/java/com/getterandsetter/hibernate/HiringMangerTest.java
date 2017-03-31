@@ -42,6 +42,9 @@ public class HiringMangerTest
 		Sas_Application_Type job = new Sas_Application_Type(3, "test for new Job");*/
 		List<Sas_Application> list = dao.getAppsByUserCriteria(manger);
 		System.out.println(list);
+		//System.out.println(dao.allSkills());
+		
+		 	 
 		
 		/*Sas_Users manger = dao.findManager(7);
 		dao.postJob(manger, desiredSkills, job)*/;

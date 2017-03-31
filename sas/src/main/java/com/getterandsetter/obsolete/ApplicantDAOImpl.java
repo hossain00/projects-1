@@ -116,4 +116,10 @@ public class ApplicantDAOImpl implements ApplicantDAO {
         return (List<Sas_Application>) session.createCriteria(Sas_Application.class).add(Restrictions.eq("Sas_author.Sas_users_id", user.getSas_users_id())).list();
   
    }
+	
+	@SuppressWarnings("unchecked")
+    public List<Sas_Application> findJobTypes() {
+        //return session.createQuery("from Sas_Application").list();
+        return session.createCriteria(Sas_Application_Type.class).list();
+    }
 }

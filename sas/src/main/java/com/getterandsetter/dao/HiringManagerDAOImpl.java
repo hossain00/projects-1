@@ -16,8 +16,10 @@ import com.getterandsetter.beans.Sas_Application;
 import com.getterandsetter.beans.Sas_Application_Status;
 import com.getterandsetter.beans.Sas_Application_Type;
 import com.getterandsetter.beans.Sas_SkillSet;
+import com.getterandsetter.beans.Sas_Skills;
 import com.getterandsetter.beans.Sas_Users;
 import com.getterandsetter.hibernate.HibernateUtils;
+import com.getterandsetter.recommendations.Recommended;
 
 /** * 
  * @author Hendy
@@ -41,6 +43,12 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 	 {
 		 return session.createCriteria(Sas_Application.class).list();
 	 }
+	
+	 @SuppressWarnings("unchecked")
+		public List<Sas_Skills> allSkills()
+		 {
+			 return session.createCriteria(Sas_Skills.class).list();
+		 }
 	
 	public Sas_Application findApp(int Sas_id)
 	{
@@ -93,6 +101,7 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Sas_Application> getRecommendedApps() 
 	{
 		/*
@@ -101,8 +110,23 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		 * 
 		 * couldnt be implented because i need to find out off Mike createat a list of skills for applicants
 		 */
+		List<Sas_Application> list = session.createCriteria(Sas_Application.class).list();
+		
+		List<Sas_Application> returningList = new ArrayList<Sas_Application>();
+		
+		for(int i = 0; i < list.size(); i++)
+		{
+			/*Recommended rec = new Recommended(
+					list.get(i).get
+					appSkills, desiredSkills, application)
+*/		}
 		
 		return session.createCriteria(Sas_Application.class).list();
+	}
+	
+	public void storeAppType(Sas_Application_Type jobtype)
+	{
+		
 	}
 
 	public void approveDeny(Sas_Users mgr, int statusChange, Sas_Application application) 
@@ -162,6 +186,9 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 			job.setJobSkillSet(desiredSkills);
 			session.save(job);
 			tx.commit();
+			
+			job = new Sas_Application_Type(1, "Job Type", desiredSkills,
+					"location", "decription", "industry position");
 		}
 		catch(Exception e)
 		{
@@ -173,7 +200,7 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 	@SuppressWarnings("unchecked")
     public List<Sas_Application> getAppsByUserCriteria(Sas_Users user){
 
-         Criteria criteria = session.createCriteria(Sas_Application.class);
+        // Criteria criteria = session.createCriteria(Sas_Application.class);
          
          
          //Integer.toString((user.getSas_users_id(),

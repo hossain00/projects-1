@@ -19,7 +19,7 @@ public class UpdateApplicationTest {
 	@Test
 	public void test(){
 		System.out.println("Before modification: " + toTest);
-		toTest.setSas_skills("Hibernate");
+		//toTest.setSas_skills("Hibernate");
 		dao.update(toTest);
 		System.out.println("Updated!");
 		/*dao.delete(toTest);
