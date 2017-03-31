@@ -5,9 +5,6 @@ import java.util.List;
 import org.junit.Test;
 
 import com.getterandsetter.beans.Sas_Application;
-import com.getterandsetter.beans.Sas_Application_Type;
-import com.getterandsetter.beans.Sas_SkillSet;
-import com.getterandsetter.beans.Sas_User_Roles;
 import com.getterandsetter.beans.Sas_Users;
 import com.getterandsetter.dao.HiringManagerDAOImpl;
 /**
@@ -46,10 +43,13 @@ public class HiringMangerTest
 		
 		 	 
 		
-		/*Sas_Users manger = dao.findManager(7);
-		dao.postJob(manger, desiredSkills, job)*/;
-		/*Sas_Application app = dao.findApp(9450);
-		dao.approveDeny(manger, 2, app);*/
+
+		Sas_Application app = dao.findApp(9102);
+		dao.approveDeny(manger,app);
+		
+		
+		
+
 		System.out.println("success!!");
 	}
 }

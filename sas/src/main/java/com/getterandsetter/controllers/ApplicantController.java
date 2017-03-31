@@ -64,7 +64,20 @@ public class ApplicantController {
 	@RequestMapping(value = "new", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> add(@Valid @RequestBody Sas_Application app) {
-		System.out.println("Applyying: " + app);
+		System.out.println("Applying: " + app.getTemp_sas_job_id());
+		Sas_Application_Type sas = new Sas_Application_Type();
+		sas.setSas_job_type_id(app.getTemp_sas_job_id());
+		app.setSas_job_type_id(sas);
+		
+		Sas_Users u = new Sas_Users();
+		u.setSas_users_id(7);
+		app.setSas_author(u);
+		Sas_Application_Status stat = new Sas_Application_Status();
+		stat.setSas_status_id(1);
+		app.setSas_status_id(stat);
+		
+//		Sas_Skills sk = new Sas_Skills();
+//		sk.setSkillName(app.get);
 		a = new ApplicantDAOImpl().createSas_Application(app);
 		
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);

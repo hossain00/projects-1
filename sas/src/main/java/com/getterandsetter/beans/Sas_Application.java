@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Sas_Application")
@@ -48,13 +49,24 @@ public class Sas_Application {
 	@JoinColumn(name = "Sas_job_type_id")
 	private Sas_Application_Type Sas_job_type_id;
 	
+
 	@ManyToOne
 	@JoinColumn(name = "Sas_Skill_Set_id")
 	private Sas_SkillSet sas_Skill_Set_id;
 	
 	@Column(name="relocation")
 	private boolean relocation = false;
+
+	@Transient
+	private int temp_sas_job_id;
+
 	
+	public int getTemp_sas_job_id() {
+		return temp_sas_job_id;
+	}
+	public void setTemp_sas_job_id(int temp_sas_job_id) {
+		this.temp_sas_job_id = temp_sas_job_id;
+	}
 	//getters and setters
 	public int getSas_id() {
 		return Sas_id;
@@ -134,6 +146,7 @@ public class Sas_Application {
 	
 	
 	//constructor without resume
+
 			public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, Sas_SkillSet sas_Skill_Set_id,
 					Sas_Users sas_approver, Sas_Application_Status sas_status_id, Sas_Users sas_author,
 					Sas_Application_Type sas_job_type_id) {
@@ -190,8 +203,9 @@ public class Sas_Application {
 		
 		public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, byte[] resume, Sas_Users sas_approver,
 			Sas_Application_Status sas_status_id, Sas_Users sas_author, Sas_Application_Type sas_job_type_id,
-			Sas_SkillSet sas_Skill_Set_id, boolean relocation) 
+			Sas_SkillSet sas_Skill_Set_id, boolean relocation, int temp_sas_job_id) 
 		{
+		
 		super();
 		Sas_id = sas_id;
 		Sas_submitted = sas_submitted;
@@ -201,24 +215,16 @@ public class Sas_Application {
 		Sas_status_id = sas_status_id;
 		Sas_author = sas_author;
 		Sas_job_type_id = sas_job_type_id;
+
 		this.sas_Skill_Set_id = sas_Skill_Set_id;
 		this.relocation = relocation;
+
+		this.temp_sas_job_id =temp_sas_job_id;
+
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	
 	
 }

@@ -129,21 +129,22 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		
 	}
 
-	public void approveDeny(Sas_Users mgr, int statusChange, Sas_Application application) 
+	public Sas_Application approveDeny(Sas_Users mgr,  Sas_Application application) 
 	{
 		
 		Transaction tx = session.beginTransaction();
-		if(statusChange == 2)
-		{
+		/*if(statusChange == 2)
+		{*/
 			application.setSas_approver(mgr);
 			application.setSas_resolved("SYSDATE");
 			application.setSas_status_id(new Sas_Application_Status(2, "Approved"));
 			
 			session.saveOrUpdate(application);
 			tx.commit();
-		}
+		/*}*/
+			return application;
 		
-		else if(statusChange == 3)
+		/*else if(statusChange == 3)
 		{
 			application.setSas_approver(mgr);
 			application.setSas_resolved("SYSDATE");
@@ -151,7 +152,7 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 			
 			session.saveOrUpdate(application);
 			tx.commit();
-		}
+		}*/
 		
 	}
 
