@@ -30,9 +30,7 @@ public class Sas_Application {
 	@Column(name = "Sas_resolved")
 	private String Sas_resolved;
 
-	@Column(name = "Sas_skills")
-	private String Sas_skills;
-
+	
 	@Column(name = "Resume")
 	private byte[] Resume;
 
@@ -51,8 +49,17 @@ public class Sas_Application {
 	@JoinColumn(name = "Sas_job_type_id")
 	private Sas_Application_Type Sas_job_type_id;
 	
+
+	@ManyToOne
+	@JoinColumn(name = "Sas_Skill_Set_id")
+	private Sas_SkillSet sas_Skill_Set_id;
+	
+	@Column(name="relocation")
+	private boolean relocation = false;
+
 	@Transient
 	private int temp_sas_job_id;
+
 	
 	public int getTemp_sas_job_id() {
 		return temp_sas_job_id;
@@ -79,12 +86,7 @@ public class Sas_Application {
 	public void setSas_resolved(String sas_resolved) {
 		Sas_resolved = sas_resolved;
 	}
-	public String getSas_skills() {
-		return Sas_skills;
-	}
-	public void setSas_skills(String sas_skills) {
-		Sas_skills = sas_skills;
-	}
+	
 	public byte[] getResume() {
 		return Resume;
 	}
@@ -115,12 +117,25 @@ public class Sas_Application {
 	public void setSas_job_type_id(Sas_Application_Type sas_job_type_id) {
 		Sas_job_type_id = sas_job_type_id;
 	}
+
+	public boolean isRelocation() {
+		return relocation;
+	}
+	public void setRelocation(boolean relocation) {
+		this.relocation = relocation;
+	}
 	
+	public Sas_SkillSet getSas_Skill_Set_id() {
+		return sas_Skill_Set_id;
+	}
+	public void setSas_Skill_Set_id(Sas_SkillSet sas_Skill_Set_id) {
+		this.sas_Skill_Set_id = sas_Skill_Set_id;
+	}
 	//toString
 	@Override
 	public String toString() {
 		return "\nSas_Application [Sas_id=" + Sas_id + ", Sas_submitted=" + Sas_submitted + ", Sas_resolved="
-				+ Sas_resolved + ", Sas_skills=" + Sas_skills + ", Sas_approver=" + Sas_approver + ", Sas_status_id="
+				+ Sas_resolved + ", Sas_approver=" + Sas_approver + ", Sas_status_id="
 				+ Sas_status_id + ", Sas_author=" + Sas_author + ", Sas_job_type_id=" + Sas_job_type_id + "]";
 	}
 	
@@ -129,41 +144,87 @@ public class Sas_Application {
 		super();
 	}
 	
+	
 	//constructor without resume
-	public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, String sas_skills,
-			Sas_Users sas_approver, Sas_Application_Status sas_status_id, Sas_Users sas_author,
-			Sas_Application_Type sas_job_type_id,  int temp_sas_job_id) {
+
+			public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, Sas_SkillSet sas_Skill_Set_id,
+					Sas_Users sas_approver, Sas_Application_Status sas_status_id, Sas_Users sas_author,
+					Sas_Application_Type sas_job_type_id) {
+				super();
+				Sas_id = sas_id;
+				Sas_submitted = sas_submitted;
+				Sas_resolved = sas_resolved;
+				Sas_approver = sas_approver;
+				Sas_status_id = sas_status_id;
+				Sas_author = sas_author;
+				Sas_job_type_id = sas_job_type_id;
+				this.sas_Skill_Set_id = sas_Skill_Set_id;
+			}
+			
+			//constructor with not null args, no App Id is generated
+			public Sas_Application(Sas_Application_Status sas_status_id, Sas_Users sas_author,
+					Sas_Application_Type sas_job_type_id) {
+				super();
+				
+				Sas_status_id = sas_status_id;
+				Sas_author = sas_author;
+				Sas_job_type_id = sas_job_type_id;
+			}
+			
+			//constructor with id
+			public Sas_Application(int sas_id, Sas_Application_Status sas_status_id, Sas_Users sas_author,
+					Sas_Application_Type sas_job_type_id) {
+				super();
+				Sas_id = sas_id;
+				Sas_status_id = sas_status_id;
+				Sas_author = sas_author;
+				Sas_job_type_id = sas_job_type_id;
+				
+			}
+		
+		
+		
+		
+		public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, Sas_SkillSet sas_Skill_Set_id, byte[] resume,
+				Sas_Users sas_approver, Sas_Application_Status sas_status_id, Sas_Users sas_author,
+				Sas_Application_Type sas_job_type_id, boolean relocation) {
+			super();
+			Sas_id = sas_id;
+			Sas_submitted = sas_submitted;
+			Sas_resolved = sas_resolved;
+			Resume = resume;
+			Sas_approver = sas_approver;
+			Sas_status_id = sas_status_id;
+			Sas_author = sas_author;
+			Sas_job_type_id = sas_job_type_id;
+			this.sas_Skill_Set_id = sas_Skill_Set_id;
+			this.relocation = relocation;
+		}
+		
+		public Sas_Application(int sas_id, String sas_submitted, String sas_resolved, byte[] resume, Sas_Users sas_approver,
+			Sas_Application_Status sas_status_id, Sas_Users sas_author, Sas_Application_Type sas_job_type_id,
+			Sas_SkillSet sas_Skill_Set_id, boolean relocation, int temp_sas_job_id) 
+		{
+		
 		super();
 		Sas_id = sas_id;
 		Sas_submitted = sas_submitted;
 		Sas_resolved = sas_resolved;
-		Sas_skills = sas_skills;
+		Resume = resume;
 		Sas_approver = sas_approver;
 		Sas_status_id = sas_status_id;
 		Sas_author = sas_author;
 		Sas_job_type_id = sas_job_type_id;
-		temp_sas_job_id =temp_sas_job_id;
+
+		this.sas_Skill_Set_id = sas_Skill_Set_id;
+		this.relocation = relocation;
+
+		this.temp_sas_job_id =temp_sas_job_id;
+
 	}
 	
-	//constructor with not null args, no App Id is generated
-	public Sas_Application(Sas_Application_Status sas_status_id, Sas_Users sas_author,
-			Sas_Application_Type sas_job_type_id) {
-		super();
-		
-		Sas_status_id = sas_status_id;
-		Sas_author = sas_author;
-		Sas_job_type_id = sas_job_type_id;
-	}
 	
-	//constructor with id
-	public Sas_Application(int sas_id, Sas_Application_Status sas_status_id, Sas_Users sas_author,
-			Sas_Application_Type sas_job_type_id) {
-		super();
-		Sas_id = sas_id;
-		Sas_status_id = sas_status_id;
-		Sas_author = sas_author;
-		Sas_job_type_id = sas_job_type_id;
-		
-	}
+
+	
 	
 }

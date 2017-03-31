@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Table(name = "Skill")
 public class Sas_Skills 
 {
+	@Override
+	public String toString() {
+		return "\nSas_Skills [skill_ID=" + skill_ID + ", skillName=" + skillName + "]";
+	}
+
 	@Id
 	@Column(name = "Sas_Skill_id")
 	@SequenceGenerator(name = "Sas_Skill_id_gen", sequenceName = "Sas_Skill_id_seq" , initialValue=1, allocationSize=1)

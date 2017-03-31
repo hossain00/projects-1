@@ -16,8 +16,10 @@ import com.getterandsetter.beans.Sas_Application;
 import com.getterandsetter.beans.Sas_Application_Status;
 import com.getterandsetter.beans.Sas_Application_Type;
 import com.getterandsetter.beans.Sas_SkillSet;
+import com.getterandsetter.beans.Sas_Skills;
 import com.getterandsetter.beans.Sas_Users;
 import com.getterandsetter.hibernate.HibernateUtils;
+import com.getterandsetter.recommendations.Recommended;
 
 /** * 
  * @author Hendy
@@ -41,6 +43,12 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 	 {
 		 return session.createCriteria(Sas_Application.class).list();
 	 }
+	
+	 @SuppressWarnings("unchecked")
+		public List<Sas_Skills> allSkills()
+		 {
+			 return session.createCriteria(Sas_Skills.class).list();
+		 }
 	
 	public Sas_Application findApp(int Sas_id)
 	{
@@ -93,17 +101,36 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 		}
 	}
 
-	public List<Sas_Application> getRecommendedApps() 
+	@SuppressWarnings("unchecked")
+	public List<Sas_Application> getRecommendedApps(Sas_Application_Type jobType) 
 	{
-		/*
-		 * Should match applicant skills(should be a list within applicant object)
-		 * and return those applicants which at least 50% of the desired skills
-		 * 
-		 * couldnt be implented because i need to find out off Mike createat a list of skills for applicants
-		 */
+		List<Sas_Application> list = session.createCriteria(Sas_Application.class).list();
 		
-		return session.createCriteria(Sas_Application.class).list();
+		List<Sas_Application> returningList = new ArrayList<Sas_Application>();
+		
+		for(int i = 1; i < list.size(); i++)
+		{
+			if(list.get(i).getSas_Skill_Set_id()!= null)
+			{
+				Recommended rec = new Recommended(
+						list.get(i).getSas_Skill_Set_id(), 
+						jobType.getJobSkillSet(), 
+						list.get(i));
+				
+				if (rec.score() > 5)
+				{
+					System.out.println(list.get(i));
+					System.out.println("Rec Score: " + rec.score());
+					returningList.add(list.get(i));
+				}
+			}
+			/*System.out.println(list.get(i));
+			System.out.println("Rec Score: " + rec.score());*/
+		}
+		
+		return returningList;
 	}
+	
 
 	public Sas_Application approveDeny(Sas_Users mgr,  Sas_Application application) 
 	{
@@ -163,6 +190,9 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 			job.setJobSkillSet(desiredSkills);
 			session.save(job);
 			tx.commit();
+			
+			/*job = new Sas_Application_Type(1, "Job Type", desiredSkills,
+					"location", "decription", "industry position");*/
 		}
 		catch(Exception e)
 		{
@@ -172,16 +202,14 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 	
 	
 	@SuppressWarnings("unchecked")
-    public List<Sas_Application> getAppsByUserCriteria(Sas_Users user){
-
-         Criteria criteria = session.createCriteria(Sas_Application.class);
-         
-         
-         //Integer.toString((user.getSas_users_id(),
-
-         return (List<Sas_Application>) session.createCriteria(Sas_Application.class).add(Restrictions.eq("Sas_author.Sas_users_id", user.getSas_users_id())).list();
-          
+    public List<Sas_Application> getAppsByUserCriteria(Sas_Users user)
+	{
+         return (List<Sas_Application>) session.createCriteria(Sas_Application.class).add(Restrictions.eq("Sas_author.Sas_users_id", user.getSas_users_id())).list();     
+    }
     
+    public Sas_Application_Type returnJob(int Sas_job_type_id)
+    {
+    	return (Sas_Application_Type) session.load(Sas_Application_Type.class, Sas_job_type_id);
     }
 	
 }

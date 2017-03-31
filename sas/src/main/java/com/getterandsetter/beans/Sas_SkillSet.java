@@ -1,5 +1,8 @@
 package com.getterandsetter.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.getterandsetter.recommendations.skilltemplate;
 
 @Entity
 @Table(name = "Skill_Set")
@@ -99,6 +104,16 @@ public class Sas_SkillSet
 		this.hibernate = hibernate;
 	}
 	
-	
+	public List<skilltemplate> getSkills()
+	{
+		List<skilltemplate> list = new ArrayList<skilltemplate>() ; 
+		list.add(new skilltemplate("java", java ));
+		list.add(new skilltemplate("sql", sql ));
+		list.add(new skilltemplate("python", python ));
+		list.add(new skilltemplate("spring", spring ));
+		list.add(new skilltemplate("hibernate", hibernate ));
+		return list;
+	}
 	
 }
+

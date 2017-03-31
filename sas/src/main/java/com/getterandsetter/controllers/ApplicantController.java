@@ -68,7 +68,7 @@ public class ApplicantController {
 		Sas_Application_Type sas = new Sas_Application_Type();
 		sas.setSas_job_type_id(app.getTemp_sas_job_id());
 		app.setSas_job_type_id(sas);
-		app.setSas_skills("Agile, R, Python");
+		
 		Sas_Users u = new Sas_Users();
 		u.setSas_users_id(7);
 		app.setSas_author(u);

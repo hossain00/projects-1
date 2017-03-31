@@ -37,12 +37,15 @@ public class HiringMangerTest
 		
 		/*Sas_SkillSet desiredSkills = new Sas_SkillSet(12, null, true, true, false, false, false);
 		Sas_Application_Type job = new Sas_Application_Type(3, "test for new Job");*/
-		List<Sas_Application> list = dao.getAppsByUserCriteria(manger);
+		List<Sas_Application> list = dao.getRecommendedApps(dao.returnJob(1));
 		System.out.println(list);
+		//System.out.println(dao.allSkills());
+		
+		
 		
 
-		Sas_Application app = dao.findApp(9102);
-		dao.approveDeny(manger,app);
+		/*Sas_Application app = dao.findApp(9102);
+		dao.approveDeny(manger,app);*/
 		
 		
 		
