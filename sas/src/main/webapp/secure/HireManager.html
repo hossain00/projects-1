@@ -102,9 +102,12 @@
 				function() {	
 					
 					
-					$('#recommend').click(function(){
+					$('#Accept').click(function(){
+						var  i = $(this+" input[name='sasid']").val();
+						
 						$.ajax("http://localhost:7001/sas/hmanager/appdate", {
 							method : "POST",
+							data : JSON.stringify(i),
 							headers : {
 								"Accept" : "application/json"
 							},
@@ -147,28 +150,15 @@
 					
 					function tableload(response) {
 						$.each(response, function(index, temp) {
-							$(".table tbody").append("<tr>");
-							$(".table tbody").append(
-									"<td>" + temp.sas_id + "</td>");
-							$(".table tbody").append(
-									"<td>" + temp.sas_author.user_first_name
-											+ " "+ temp.sas_author.user_last_name
-											+ "</td>");
-							$(".table tbody").append(
-									"<td>" + temp.sas_skills + "</td>");
-							$(".table tbody").append(
-									"<td>" + temp.resume + "</td>");
-							$(".table tbody")
-									.append("<td>" + "temp." + "</td>");
-							$(".table tbody").append(
-									"<td>" + temp.sas_submitted + "</td>");
-							$(".table tbody").append(
-									"<td>" + temp.sas_status_id.sas_status
-											+ "</td>");
-							$(".table tbody").append(
-									"<td>" + "<button id=" + "Accept" +">"
-											+ "Accept</button>" + "</td>");
-							$(".table tbody").append("</tr>");
+							$(".table tbody").append("<tr>"+
+							"<td>" + temp.sas_id + "</td>"+
+							"<td>" + temp.sas_author.user_first_name +" "+ temp.sas_author.user_last_name + "</td>"+
+							"<td>" + temp.sas_skills + "</td>"+ 
+							"<td>" + temp.resume + "</td>"+  
+							"<td>" + "temp."+"</td>"+
+							"<td>" + temp.sas_submitted + "</td>"+
+							"<td>" + temp.sas_status_id.sas_status + "</td>"+
+							"<td><button id=\"accept_\"+temp.sas_id >"+ "Accept </button><input name=\"sasid\" type=\"hidden\" value=\""+ temp.sas_id +"\"></td></tr>");
 						});
 					}
 
