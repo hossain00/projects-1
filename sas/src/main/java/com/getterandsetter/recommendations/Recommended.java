@@ -46,11 +46,14 @@ public class Recommended
 		 * First get the skills to compare and throw them in a loop!!
 		 */
 		List<skilltemplate> desiredList = desiredSkills.getSkills();
+		System.out.println(desiredList);
+		System.out.println("Desired list finisheds");
 		List<skilltemplate> applicantList = appSkills.getSkills();
+		System.out.println(applicantList);
 		
 		skills = desiredList.size();
 		
-		for(int i = 0; i<skills; i++)
+		for(int i = 0; i <1; i++)
 		{
 			if(desiredList.get(i).isValue() == applicantList.get(i).isValue())
 			{

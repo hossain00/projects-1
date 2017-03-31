@@ -102,32 +102,35 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Sas_Application> getRecommendedApps() 
+	public List<Sas_Application> getRecommendedApps(Sas_Application_Type jobType) 
 	{
-		/*
-		 * Should match applicant skills(should be a list within applicant object)
-		 * and return those applicants which at least 50% of the desired skills
-		 * 
-		 * couldnt be implented because i need to find out off Mike createat a list of skills for applicants
-		 */
 		List<Sas_Application> list = session.createCriteria(Sas_Application.class).list();
 		
 		List<Sas_Application> returningList = new ArrayList<Sas_Application>();
 		
-		for(int i = 0; i < list.size(); i++)
+		for(int i = 1; i < list.size(); i++)
 		{
-			/*Recommended rec = new Recommended(
-					list.get(i).get
-					appSkills, desiredSkills, application)
-*/		}
+			if(list.get(i).getSas_Skill_Set_id()!= null)
+			{
+				Recommended rec = new Recommended(
+						list.get(i).getSas_Skill_Set_id(), 
+						jobType.getJobSkillSet(), 
+						list.get(i));
+				
+				if (rec.score() > 5)
+				{
+					System.out.println(list.get(i));
+					System.out.println("Rec Score: " + rec.score());
+					returningList.add(list.get(i));
+				}
+			}
+			/*System.out.println(list.get(i));
+			System.out.println("Rec Score: " + rec.score());*/
+		}
 		
-		return session.createCriteria(Sas_Application.class).list();
+		return returningList;
 	}
 	
-	public void storeAppType(Sas_Application_Type jobtype)
-	{
-		
-	}
 
 	public Sas_Application approveDeny(Sas_Users mgr,  Sas_Application application) 
 	{
@@ -188,8 +191,8 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 			session.save(job);
 			tx.commit();
 			
-			job = new Sas_Application_Type(1, "Job Type", desiredSkills,
-					"location", "decription", "industry position");
+			/*job = new Sas_Application_Type(1, "Job Type", desiredSkills,
+					"location", "decription", "industry position");*/
 		}
 		catch(Exception e)
 		{

@@ -57,7 +57,7 @@ public class HiringManagerController {
 	@RequestMapping(value = "recom", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<Sas_Application>> Reommended(){
-		app = new HiringManagerDAOImpl().getRecommendedApps();
+		app = d.getRecommendedApps(d.returnJob(1));
 		return new ResponseEntity<List<Sas_Application>>(app, HttpStatus.OK);
 	}
 

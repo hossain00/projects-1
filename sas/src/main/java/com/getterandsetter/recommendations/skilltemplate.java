@@ -31,7 +31,14 @@ public class skilltemplate
 
 	public void setValue(boolean value) {
 		this.value = value;
+	}
+
+
+	@Override
+	public String toString() {
+		return "skilltemplate [skillname=" + skillname + ", value=" + value + "]";
 	} 
+	
 	
 	
 	

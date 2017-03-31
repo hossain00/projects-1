@@ -44,9 +44,9 @@ public class InsertTest {
 						"hvalcin"), true, true, true, true, true))));
 		/**
 		 * Hendy is working here
-		 * 1) Goal make sure creat application works
+		 * 1) Goal make sure create application works
 		 * 2) pay attention as I leave notes
-		 * 3)I tested it and it works...adds apllication and new skillset
+		 * 3)I tested it and it works...adds application and new skillset
 		 * 
 		 * whats new: now wen we add and application we have to add the skillset
 		 */
@@ -60,11 +60,11 @@ public class InsertTest {
 		/*zGeth the job weir applying for*/
 		Sas_Application_Type job =hmDao.returnJob(1);
 		/*create a skill set that relates to robert*/
-		Sas_SkillSet skillset = new Sas_SkillSet(25, applicant, true, true, false, true, true);
+		Sas_SkillSet skillset = new Sas_SkillSet(25, applicant, false, false, false, false, false);
 		/*put the skillset in the skill set table*/
 		dao.setSkills(skillset);
 		/*Now we have everthing we need lets set up the applications and save it*/
-		Sas_Application app = new Sas_Application(3, "time submitted", "time resolved", skillset,
+		Sas_Application app = new Sas_Application(3, "time submitted 3/31", "time resolved 3/31", skillset,
 				null, new Sas_Application_Status(1, "Applied"), applicant, job);
 		
 		/*Then finally save the app object*/
