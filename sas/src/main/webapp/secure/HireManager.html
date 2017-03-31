@@ -98,40 +98,56 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 	<script type="text/javascript">
-		$(document).ready(
-				function() {	
-					
-					function Application_Type(Sas_job_type, description, industryPosition, location) {
-						this.Sas_job_type = Sas_job_type;
-						this.description = description;
-						this.industryPosition = industryPosition;
-						this.location = location;
-					}
-					// add a new vehicle on button click
-					$("#add").click(function() {
+		$(document).ready
+		(
+			function() 
+			{	
+				function Application_Type(Sas_job_type, description, industryPosition, location) 
+				{
+					this.Sas_job_type = Sas_job_type;
+					this.description = description;
+					this.industryPosition = industryPosition;
+					this.location = location;
+				}
+				
+				// add a new vehicle on button click
+				$("#add").click
+				(
+					function() 
+					{
 						$("#add").prop("disabled", true);
 						var sas_job_type = $("#JobType").val();
 						var description = $("#descript").val();
 						var industryPosition = $("#indust").val();
 						var location = $("#locate").val();
 						var apppost = new Sas_Application_Type(Sas_job_type, description, industryPosition, location);
-						$.ajax("http://localhost:7001/sas/hmanager/createpost", {
+						
+						$.ajax
+						("http://localhost:7001/sas/hmanager/createpost", 
+						{
 							method : "POST",
 							data : JSON.stringify(apppost),
-							headers : {
+							headers : 
+							{
 								"Content-Type" : "application/json"
 							},
-							success : function(response) {
+							success : function(response)
+							{
 								$(".alert-success").text(response);
 								$(".alert-success").fadeIn();
-								window.setTimeout(function(response) {
+								window.setTimeout(function(response)
+								{
 									$(".alert-success").fadeOut();
 									$("#add").prop("disabled", false);
 								}, 3000);
+								
 								$("form")[0].reset(); //reset form fields
 								refresh();
 							}
-						});
+						}
+						
+						/* ); */ /*You are welcome Kam....Hendy V.*/
+						)
 						return false; // prevent REFRESH
 					});	
 					
@@ -140,68 +156,104 @@
 					
 					
 					//This is update function for accept
-					$('#Accept').click(function(){
+					$('#Accept').click(function()
+					{
 						var  i = $(this+" input[name='sasid']").val();
 						
-						$.ajax("http://localhost:7001/sas/hmanager/appupdate", {
-							method : "POST",
-							data : JSON.stringify(i),
-							headers : {
-								"Accept" : "application/json"
-							},
-							success : function(response) {
-								$('#tclear').empty();
-								console.log("cleared")
-								tableload(response);
+						$.ajax
+						(
+							"http://localhost:7001/sas/hmanager/appupdate", 
+							{
+								method : "POST",
+								data : JSON.stringify(i),
+								headers : 
+								{
+									"Accept" : "application/json"
+								},
+								success : function(response) 
+								{
+									$('#tclear').empty();
+									console.log("cleared")
+									tableload(response);
+								}
+								
 							}
-						});
+						);
 					});
 					
 				//Recommend function
-					$('#recommend').click(function(){
-						$.ajax("http://localhost:7001/sas/hmanager/recom", {
-							method : "GET",
-							headers : {
-								"Accept" : "application/json"
-							},
-							success : function(response) {
-								$('#tclear').empty();
-								console.log("cleared")
-								tableload(response);
+					$('#recommend').click(function()
+					{
+						$.ajax
+						(
+							"http://localhost:7001/sas/hmanager/recom", 
+							{
+								method : "GET",
+								headers :
+								{
+									"Accept" : "application/json"
+								},
+								success : function(response) 
+								{
+									$('#tclear').empty();
+									console.log("cleared")
+									tableload(response);
+								}
 							}
-						});
+						);
 					});
 // Load the table with Applicants
-					function refresh() {
-						$.ajax("http://localhost:7001/sas/hmanager/all", {
-							method : "GET",
-							headers : {
-								"Accept" : "application/json"
-							},
-							success : function(response) {
-								console.log(response);
-								tableload(response);
-
+					function refresh() 
+					{
+						$.ajax
+						("http://localhost:7001/sas/hmanager/all", 
+							{
+								method : "GET",
+								headers : 
+								{
+									"Accept" : "application/json"
+								},
+								success : function(response) 
+								{
+									console.log(response);
+									tableload(response);
+								}
 							}
-						});
+						);
 					}
 					
-					function tableload(response) {
-						$.each(response, function(index, temp) {
-							$(".table tbody").append("<tr>"+
-							"<td>" + temp.sas_id + "</td>"+
-							"<td>" + temp.sas_author.user_first_name +" "+ temp.sas_author.user_last_name + "</td>"+
-							"<td>" + temp.sas_skills + "</td>"+ 
-							"<td>" + temp.resume + "</td>"+  
-							"<td>" + "temp."+"</td>"+
-							"<td>" + temp.sas_submitted + "</td>"+
-							"<td>" + temp.sas_status_id.sas_status + "</td>"+
-							"<td><button id=\"accept_\"" +temp.sas_id ">"+ "Accept </button><input name=\"sasid\" type=\"hidden\" value=\""+ temp.sas_id +"\"></td></tr>");
-						});
+					function tableload(response) 
+					{
+						$.each
+						(
+							response, function(index, temp) 
+							{
+								$(".table tbody").append
+								(
+									"<tr>"+
+										"<td>" + temp.sas_id + "</td>"+
+										"<td>" + temp.sas_author.user_first_name +" "+ temp.sas_author.user_last_name + "</td>"+
+										"<td>" + temp.sas_skills + "</td>"+ 
+										"<td>" + temp.resume + "</td>"+  
+										"<td>" + "temp."+"</td>"+
+										"<td>" + temp.sas_submitted + "</td>"+
+										"<td>" + temp.sas_status_id.sas_status + "</td>"+
+										"<td>" 
+											+ "<input type=\"submit\" value = \"Accept\" name=\"accept\">"+
+											"<input type= \"hidden\" value=" + temp.reimbID +" name=\"info\"/>"+
+										"</td>"+
+									"</tr>"
+								)
+											
+								/* Kam i kinda got it working test it out....Curtesy of your lead debugger*/
+								
+							}
+						);
 					}
 
 					refresh();
-				})
+				}
+				)
 	</script>
 </body>
 
