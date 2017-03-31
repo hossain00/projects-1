@@ -100,11 +100,11 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {	
-					appdate
+					
 					
 					$('#recommend').click(function(){
-						$.ajax("http://localhost:7001/sas/hmanager/recom", {
-							method : "GET",
+						$.ajax("http://localhost:7001/sas/hmanager/appdate", {
+							method : "POST",
 							headers : {
 								"Accept" : "application/json"
 							},
