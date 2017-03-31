@@ -7,9 +7,17 @@
 
 </head>
 <body>
-	<div class="col-md-6">
-		<h2>ALL JOBS</h2>
-		<table class="table table-striped">
+<div>
+	<div class="container">
+		<h1>
+				Simple Application System <small>Applicant View</small>
+			</h1>
+			
+			<hr class="app-primary">
+<button type="button" id="recommend" class="btn btn-warning">Recommendation</button>
+			
+<table class="table table-hover table-responsive app-datatable"
+				id="mytable">
 			<thead>
 				<tr>
 					<th>Job Title</th>
@@ -20,10 +28,11 @@
 					<th>Action</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id = "tclear">
 				
 			</tbody>
 		</table>
+	</div>
 	</div>
 	
 
@@ -33,6 +42,7 @@
 </body>
 
 <script type="text/javascript">
+
 $(document).ready(function(){
 refresh();
 
@@ -44,6 +54,9 @@ function Application(sas_job_type_id) {
 			}
 			return obj1;
 		}
+		
+		
+		
 
 // add a new application on button click
 		function addApp(){
@@ -106,6 +119,12 @@ function Application(sas_job_type_id) {
 		success : function(response) {
 			console.log(response);
 			tableload(response);
+			
+			$('tr').on('click', function(){
+       			 if ($(this).hasClass('.active')) {
+            $(this).find('.add-selection').remove();
+        		}
+   			 });
 		}
 	});
 	
@@ -132,7 +151,7 @@ function Application(sas_job_type_id) {
 								"<td>" + temp.location  +"</td>"+
 								"<td>" + temp.industryPosition+"  </td>"+
 								"<td class='sas_id'>"+  temp.sas_job_type_id  +"</td>"+
-								"<td>  <button id= apply_"+temp.sas_job_type_id + ">Add</button> + </td>"+
+								"<td>  <button id= apply_"+temp.sas_job_type_id + " >One Click Apply</button> </td>"+
 								"</tr>");
 	addApp();
 	})};
