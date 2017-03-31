@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.getterandsetter.beans.Sas_Application;
 import com.getterandsetter.beans.Sas_Application_Type;
+import com.getterandsetter.beans.Sas_SkillSet;
 import com.getterandsetter.beans.Sas_User_Roles;
 import com.getterandsetter.beans.Sas_Users;
 import com.getterandsetter.hibernate.HibernateUtils;
@@ -122,4 +123,22 @@ public class ApplicantDAOImpl implements ApplicantDAO {
         //return session.createQuery("from Sas_Application").list();
         return session.createCriteria(Sas_Application_Type.class).list();
     }
+    
+    /**
+     * Hendy
+     * 
+     * we need to set skillset for an applicant's application
+     */
+    public void setSkills(Sas_SkillSet skillset)
+    {
+    	Transaction tx = session.beginTransaction();
+		try {
+			session.save(skillset);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		}
+    }
+    
+    
 }

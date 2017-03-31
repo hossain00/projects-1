@@ -199,16 +199,14 @@ public class HiringManagerDAOImpl implements HiringManagerDAO
 	
 	
 	@SuppressWarnings("unchecked")
-    public List<Sas_Application> getAppsByUserCriteria(Sas_Users user){
-
-        // Criteria criteria = session.createCriteria(Sas_Application.class);
-         
-         
-         //Integer.toString((user.getSas_users_id(),
-
-         return (List<Sas_Application>) session.createCriteria(Sas_Application.class).add(Restrictions.eq("Sas_author.Sas_users_id", user.getSas_users_id())).list();
-          
+    public List<Sas_Application> getAppsByUserCriteria(Sas_Users user)
+	{
+         return (List<Sas_Application>) session.createCriteria(Sas_Application.class).add(Restrictions.eq("Sas_author.Sas_users_id", user.getSas_users_id())).list();     
+    }
     
+    public Sas_Application_Type returnJob(int Sas_job_type_id)
+    {
+    	return (Sas_Application_Type) session.load(Sas_Application_Type.class, Sas_job_type_id);
     }
 	
 }
